@@ -1,0 +1,129 @@
+.legal-page {
+  background:
+    radial-gradient(circle at 90% 0, rgba(203, 232, 90, 0.18), transparent 25rem),
+    var(--cream);
+}
+
+.legal-shell {
+  width: min(820px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 28px 0 100px;
+}
+
+.legal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 75px;
+}
+
+.legal-header > a:last-child {
+  color: var(--green);
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+
+.legal-shell h1 {
+  margin-bottom: 18px;
+  font-size: clamp(3rem, 8vw, 5.6rem);
+  letter-spacing: -0.07em;
+  line-height: 0.98;
+}
+
+.legal-intro {
+  max-width: 680px;
+  margin-bottom: 55px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.legal-notice {
+  margin-bottom: 25px;
+  padding: 15px 17px;
+  border: 1px solid #ead6c8;
+  border-radius: 10px;
+  color: #76513f;
+  background: #fff7ed;
+  font-size: 0.82rem;
+}
+
+.legal-section {
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+}
+
+.legal-section h2 {
+  margin-bottom: 14px;
+  font-size: 1.3rem;
+  letter-spacing: -0.035em;
+}
+
+.legal-section h3 {
+  margin: 22px 0 8px;
+  font-size: 1rem;
+}
+
+.legal-section p,
+.legal-section li {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.legal-section ul {
+  display: grid;
+  gap: 8px;
+  padding-left: 20px;
+}
+
+.legal-grid {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 9px 20px;
+  margin: 0;
+}
+
+.legal-grid dt {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.legal-grid dd {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.missing-legal-value {
+  color: #a34724;
+  font-weight: 800;
+}
+
+.legal-footer {
+  display: flex;
+  gap: 18px;
+  margin-top: 45px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.83rem;
+}
+
+@media (max-width: 600px) {
+  .legal-shell {
+    width: min(100% - 28px, 820px);
+    padding-top: 18px;
+  }
+
+  .legal-header {
+    margin-bottom: 55px;
+  }
+
+  .legal-grid {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .legal-grid dd {
+    margin-bottom: 11px;
+  }
+}
