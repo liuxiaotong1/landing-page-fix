@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A sample landing page conversion audit showing prioritized findings and a rewritten hero."
+    />
+    <title>Sample Audit | 24-Hour Landing Page Fix</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        background:
+          radial-gradient(circle at 80% 0, rgba(203, 232, 90, 0.18), transparent 26rem),
+          var(--cream);
+      }
+
+      .audit-shell {
+        width: min(980px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 70px 0 110px;
+      }
+
+      .audit-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 80px;
+      }
+
+      .audit-nav a:last-child {
+        color: var(--green);
+        font-weight: 800;
+        text-underline-offset: 4px;
+      }
+
+      .audit-hero {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 45px;
+        align-items: end;
+        margin-bottom: 65px;
+      }
+
+      .audit-hero h1 {
+        margin-bottom: 22px;
+        font-size: clamp(3.1rem, 8vw, 6.8rem);
+        letter-spacing: -0.075em;
+        line-height: 0.96;
+      }
+
+      .audit-hero p {
+        max-width: 650px;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+
+      .audit-score {
+        padding: 26px;
+        border-radius: 18px;
+        color: white;
+        background: var(--green);
+      }
+
+      .audit-score span {
+        display: block;
+        color: #c8d8ce;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .audit-score strong {
+        display: block;
+        margin: 15px 0 3px;
+        font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+        font-size: 5rem;
+        letter-spacing: -0.08em;
+        line-height: 1;
+      }
+
+      .audit-score p {
+        margin: 0;
+        color: #dbe6df;
+        font-size: 0.82rem;
+      }
+
+      .disclosure {
+        margin-bottom: 35px;
+        padding: 14px 17px;
+        border: 1px solid #ead6c8;
+        border-radius: 10px;
+        color: #76513f;
+        background: #fff7ed;
+        font-size: 0.82rem;
+      }
+
+      .audit-section {
+        margin-top: 22px;
+        padding: clamp(28px, 6vw, 55px);
+        border: 1px solid var(--line);
+        border-radius: 19px;
+        background: rgba(255, 254, 249, 0.82);
+      }
+
+      .audit-section h2 {
+        margin-bottom: 26px;
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        letter-spacing: -0.05em;
+        line-height: 1.1;
+      }
+
+      .finding-list {
+        display: grid;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .finding {
+        display: grid;
+        grid-template-columns: 45px 1fr auto;
+        gap: 17px;
+        align-items: start;
+        padding: 25px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .finding:first-child {
+        border-top: 0;
+      }
+
+      .finding-number {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 50%;
+        color: white;
+        background: var(--green);
+        font-size: 0.75rem;
+        font-weight: 800;
+      }
+
+      .finding h3 {
+        margin-bottom: 7px;
+        font-size: 1rem;
+      }
+
+      .finding p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .impact {
+        padding: 5px 9px;
+        border-radius: 20px;
+        color: var(--green);
+        background: #edf3d6;
+        font-size: 0.68rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .rewrite-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .copy-block {
+        padding: 23px;
+        border-radius: 13px;
+      }
+
+      .copy-block.before-copy {
+        border: 1px dashed #bcc4be;
+        color: #6b756f;
+      }
+
+      .copy-block.after-copy {
+        color: white;
+        background: var(--ink);
+      }
+
+      .copy-label {
+        display: block;
+        margin-bottom: 18px;
+        color: var(--orange);
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .copy-block h3 {
+        max-width: 750px;
+        margin-bottom: 12px;
+        font-size: clamp(1.45rem, 3.7vw, 2.45rem);
+        letter-spacing: -0.045em;
+        line-height: 1.12;
+      }
+
+      .copy-block p {
+        max-width: 760px;
+        margin-bottom: 16px;
+        font-size: 0.93rem;
+      }
+
+      .after-copy p {
+        color: #c1cbc5;
+      }
+
+      .audit-cta {
+        margin-top: 22px;
+        padding: clamp(30px, 6vw, 55px);
+        border-radius: 19px;
+        text-align: center;
+        background: #e7edca;
+      }
+
+      .audit-cta h2 {
+        margin-bottom: 12px;
+        font-size: clamp(2rem, 5vw, 3.8rem);
+        letter-spacing: -0.06em;
+      }
+
+      .audit-cta p {
+        max-width: 620px;
+        margin: 0 auto 25px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 700px) {
+        .audit-shell {
+          width: min(100% - 28px, 980px);
+          padding-top: 25px;
+        }
+
+        .audit-nav {
+          margin-bottom: 55px;
+        }
+
+        .audit-hero {
+          grid-template-columns: 1fr;
+        }
+
+        .audit-score {
+          max-width: 280px;
+        }
+
+        .finding {
+          grid-template-columns: 40px 1fr;
+        }
+
+        .impact {
+          grid-column: 2;
+          justify-self: start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="audit-shell">
+      <nav class="audit-nav">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">24</span>
+          <span>Landing Page Fix</span>
+        </a>
+        <a href="index.html#checkout">Get your review</a>
+      </nav>
+
+      <section class="audit-hero">
+        <div>
+          <p class="eyebrow">Sample conversion audit</p>
+          <h1>AI form builder landing page</h1>
+          <p>
+            An abbreviated example showing how a technically accurate page can become
+            easier to understand and act on. A paid review includes page-wide findings,
+            mobile notes, and implementation priorities.
+          </p>
+        </div>
+        <aside class="audit-score">
+          <span>Directional clarity score</span>
+          <strong>58</strong>
+          <p>Good product depth. The first screen asks buyers to translate product jargon.</p>
+        </aside>
+      </section>
+
+      <p class="disclosure">
+        Illustrative review based on patterns observed across public form-builder pages.
+        This is not a customer case study, endorsement, or claim of measured conversion
+        results.
+      </p>
+
+      <section class="audit-section">
+        <p class="eyebrow">Executive summary</p>
+        <h2>The page explains the system before it earns interest in the outcome.</h2>
+        <ul class="finding-list">
+          <li class="finding">
+            <span class="finding-number">1</span>
+            <div>
+              <h3>Replace category jargon with the job the buyer wants done</h3>
+              <p>
+                “Data-collection scenarios” is accurate, but it makes visitors decode the
+                category. “Forms that send clean data to your workflow” is concrete.
+              </p>
+            </div>
+            <span class="impact">High impact</span>
+          </li>
+          <li class="finding">
+            <span class="finding-number">2</span>
+            <div>
+              <h3>Choose the first buyer before listing every possible use case</h3>
+              <p>
+                Teams, founders, marketers, developers, agents, webhooks, analytics, and
+                future automation appear together. Lead with one urgent use case.
+              </p>
+            </div>
+            <span class="impact">High impact</span>
+          </li>
+          <li class="finding">
+            <span class="finding-number">3</span>
+            <div>
+              <h3>Make the CTA promise an immediate result</h3>
+              <p>
+                “Generate form” is functional. “Build my first lead form” reduces ambiguity
+                and matches the suggested prompt directly beneath it.
+              </p>
+            </div>
+            <span class="impact">Quick win</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="audit-section">
+        <p class="eyebrow">Above-the-fold rewrite</p>
+        <h2>Move from system language to a visible workflow outcome.</h2>
+        <div class="rewrite-stack">
+          <article class="copy-block before-copy">
+            <span class="copy-label">Before pattern</span>
+            <h3>Generate publishable data-collection scenarios with AI and templates</h3>
+            <p>
+              Generate forms, flows, submissions, webhook delivery, analytics, agents,
+              workflows, and deeper automation capabilities.
+            </p>
+            <span class="fake-button">Generate form</span>
+          </article>
+          <article class="copy-block after-copy">
+            <span class="copy-label">Recommended direction</span>
+            <h3>Describe the data you need. Get a form that is ready to share.</h3>
+            <p>
+              Build lead, booking, and feedback forms from one prompt. Publish in minutes,
+              then send every clean submission to your existing workflow with reliable
+              webhooks.
+            </p>
+            <span class="fake-button active">Build my first form</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="audit-section">
+        <p class="eyebrow">Three changes for today</p>
+        <h2>High signal, low implementation effort.</h2>
+        <ul class="finding-list">
+          <li class="finding">
+            <span class="finding-number">1</span>
+            <div>
+              <h3>Use one default prompt in the input</h3>
+              <p>
+                Pre-fill a realistic lead form request so visitors understand the expected
+                detail and can edit instead of starting from a blank field.
+              </p>
+            </div>
+            <span class="impact">Low effort</span>
+          </li>
+          <li class="finding">
+            <span class="finding-number">2</span>
+            <div>
+              <h3>Put the reliability proof beside the CTA</h3>
+              <p>
+                Mention signed webhooks, delivery logs, or retries as a short risk reducer,
+                rather than burying the strongest technical differentiation.
+              </p>
+            </div>
+            <span class="impact">Low effort</span>
+          </li>
+          <li class="finding">
+            <span class="finding-number">3</span>
+            <div>
+              <h3>Move future product lines below the first successful action</h3>
+              <p>
+                “Agents” and “deeper automation” widen the promise before the core form
+                builder is understood. Introduce them after the primary workflow.
+              </p>
+            </div>
+            <span class="impact">Medium effort</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="audit-cta">
+        <p class="eyebrow">Your page, not a generic checklist</p>
+        <h2>Get the full review in 24 hours.</h2>
+        <p>
+          Founding reviews include the full page teardown, rewritten hero, and prioritized
+          action list for €39.
+        </p>
+        <a class="button button-primary" data-checkout href="#">Claim a founding slot</a>
+      </section>
+    </main>
+
+    <div class="toast" role="status" aria-live="polite">
+      This offer is not open for purchase yet.
+    </div>
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
