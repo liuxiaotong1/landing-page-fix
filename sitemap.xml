@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://liuxiaotong1.github.io/landing-page-fix/</loc>
+    <lastmod>2026-06-16</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://liuxiaotong1.github.io/landing-page-fix/hero-checker.html</loc>
+    <lastmod>2026-06-16</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://liuxiaotong1.github.io/landing-page-fix/sample-audit.html</loc>
+    <lastmod>2026-06-16</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://liuxiaotong1.github.io/landing-page-fix/terms.html</loc>
+    <lastmod>2026-06-16</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://liuxiaotong1.github.io/landing-page-fix/privacy.html</loc>
+    <lastmod>2026-06-16</lastmod>
+    <priority>0.3</priority>
+  </url>
+</urlset>
