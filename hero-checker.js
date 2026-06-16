@@ -19,6 +19,7 @@ const presets = {
   },
 };
 let latestSummary = "";
+let latestValues = null;
 
 function normalize(value) {
   return value.trim().replace(/\s+/g, " ");
@@ -125,6 +126,37 @@ function scoreLabel(score) {
   return "The buyer is doing too much decoding";
 }
 
+function shareUrl(values) {
+  const url = new URL(window.location.href);
+  ["buyer", "headline", "support", "cta", "proof"].forEach((field) => {
+    if (values[field]) {
+      url.searchParams.set(field, values[field]);
+    } else {
+      url.searchParams.delete(field);
+    }
+  });
+  return url.toString();
+}
+
+function fillForm(values) {
+  if (!checker) return;
+  ["buyer", "headline", "support", "cta", "proof"].forEach((field) => {
+    if (checker.elements[field] && values[field]) {
+      checker.elements[field].value = values[field];
+    }
+  });
+}
+
+function valuesFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return Object.fromEntries(
+    ["buyer", "headline", "support", "cta", "proof"].map((field) => [
+      field,
+      normalize(params.get(field) || ""),
+    ]),
+  );
+}
+
 function renderResult(values, analysis) {
   const buyer = escapeHtml(values.buyer);
   const cta = escapeHtml(values.cta);
@@ -141,6 +173,7 @@ function renderResult(values, analysis) {
     `Main flags: ${failedChecks.length ? failedChecks.join(", ") : "None"}`,
     "Checked locally with the explainable Hero Clarity Checker.",
   ].join("\n");
+  latestValues = values;
 
   result.innerHTML = `
     <div class="result-top">
@@ -164,8 +197,10 @@ function renderResult(values, analysis) {
       <a class="button button-primary" href="sample-audit.html">See a full sample</a>
       <a class="button tool-email-button" href="mailto:${email}?subject=${subject}&body=${body}">Request 3 human observations</a>
       <button class="copy-result" type="button">Copy score summary</button>
+      <button class="share-result" type="button">Copy shareable test link</button>
       ${checkoutUrl ? `<a class="result-checkout-link" href="${escapeHtml(checkoutUrl)}" target="_blank" rel="noopener">Preview the €39 human review checkout ↗</a>` : ""}
-    </div>`;
+    </div>
+    <p class="result-note">Shareable links keep the five hero fields in the URL so a founder can reopen the same test. No text is uploaded.</p>`;
 }
 
 document.querySelectorAll("[data-preset]").forEach((button) => {
@@ -180,12 +215,21 @@ document.querySelectorAll("[data-preset]").forEach((button) => {
 });
 
 result?.addEventListener("click", async (event) => {
-  const button = event.target.closest(".copy-result");
-  if (!button || !latestSummary) return;
+  const summaryButton = event.target.closest(".copy-result");
+  const shareButton = event.target.closest(".share-result");
+  if (!summaryButton && !shareButton) return;
+
   try {
-    await navigator.clipboard.writeText(latestSummary);
-    button.textContent = "Copied";
+    if (summaryButton && latestSummary) {
+      await navigator.clipboard.writeText(latestSummary);
+      summaryButton.textContent = "Copied";
+    }
+    if (shareButton && latestValues) {
+      await navigator.clipboard.writeText(shareUrl(latestValues));
+      shareButton.textContent = "Link copied";
+    }
   } catch {
+    const button = summaryButton || shareButton;
     button.textContent = "Copy unavailable";
   }
 });
@@ -197,3 +241,9 @@ checker?.addEventListener("submit", (event) => {
   renderResult(values, scoreHero(values));
   result.scrollIntoView({ behavior: "smooth", block: "start" });
 });
+
+const initialValues = valuesFromUrl();
+if (checker && result && initialValues.buyer && initialValues.headline && initialValues.support && initialValues.cta) {
+  fillForm(initialValues);
+  renderResult(initialValues, scoreHero(initialValues));
+}
