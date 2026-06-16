@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://liuxiaotong1.github.io/landing-page-fix/sitemap.xml
