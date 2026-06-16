@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Check whether your SaaS hero clearly names the buyer, outcome, mechanism, and next step." />
+    <title>Free SaaS Hero Clarity Checker | Landing Page Fix</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="tool.css" />
+  </head>
+  <body>
+    <div class="preview-banner" data-launch-state>
+      MVP preview · checkout shown for validation · purchases not yet open
+    </div>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Landing Page Fix home">
+        <span class="brand-mark">24</span>
+        <span>Landing Page Fix</span>
+      </a>
+      <a class="header-link" href="sample-audit.html">See a full sample</a>
+    </header>
+
+    <main class="tool-shell">
+      <section class="tool-intro">
+        <p class="eyebrow">Free browser-based tool</p>
+        <h1>Can a buyer understand your SaaS hero in 10 seconds?</h1>
+        <p>Paste the five lines a visitor sees first. Get an explainable clarity score, specific flags, and a rewrite structure. Nothing is uploaded.</p>
+      </section>
+
+      <div class="tool-layout">
+        <form class="checker-form" id="hero-checker">
+          <div class="preset-row" aria-label="Example hero copy">
+            <span>Try an example:</span>
+            <button type="button" data-preset="clear">Clear hero</button>
+            <button type="button" data-preset="vague">Vague hero</button>
+          </div>
+          <label>Target buyer
+            <input name="buyer" placeholder="e.g. Finance teams at B2B SaaS companies" maxlength="120" required />
+          </label>
+          <label>Headline
+            <textarea name="headline" placeholder="e.g. Close the books without chasing receipts" maxlength="180" required></textarea>
+          </label>
+          <label>Supporting line
+            <textarea name="support" placeholder="What changes for the buyer, and how?" maxlength="300" required></textarea>
+          </label>
+          <label>Primary CTA
+            <input name="cta" placeholder="e.g. Upload my first receipt" maxlength="80" required />
+          </label>
+          <label>Proof line <span>optional</span>
+            <input name="proof" placeholder="e.g. Used by 120 finance teams" maxlength="160" />
+          </label>
+          <button class="button button-primary full-width" type="submit">Check my hero</button>
+          <p class="tool-privacy">Your text stays in this browser. This checker uses transparent rules, not a hidden model.</p>
+        </form>
+
+        <section class="checker-result" id="checker-result" aria-live="polite">
+          <div class="empty-result">
+            <span class="empty-score">?</span>
+            <h2>Your score will appear here.</h2>
+            <p>The checker looks for a named buyer, concrete outcome, readable length, credible proof, and a CTA that describes the next step.</p>
+          </div>
+        </section>
+      </div>
+
+      <section class="tool-method">
+        <div>
+          <p class="eyebrow">What it checks</p>
+          <h2>Clarity before cleverness.</h2>
+        </div>
+        <ul>
+          <li><b>Buyer</b><span>Can the right person recognize themselves?</span></li>
+          <li><b>Outcome</b><span>Does the page promise a visible change?</span></li>
+          <li><b>Specificity</b><span>Are vague category words doing too much work?</span></li>
+          <li><b>Action</b><span>Does the CTA explain what happens next?</span></li>
+          <li><b>Proof</b><span>Is there a reason to believe the promise?</span></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="index.html">
+        <span class="brand-mark">24</span><span>Landing Page Fix</span>
+      </a>
+      <p>Clearer page. Better next step.</p>
+      <nav class="footer-links" aria-label="Legal and contact">
+        <a data-contact>Contact</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a>
+      </nav>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+    <script src="hero-checker.js"></script>
+  </body>
+</html>
