@@ -60,7 +60,8 @@
 }
 
 .preset-row button,
-.copy-result {
+.copy-result,
+.share-result {
   padding: 7px 10px;
   border: 1px solid #c7cec9;
   border-radius: 7px;
@@ -73,7 +74,8 @@
 }
 
 .preset-row button:hover,
-.copy-result:hover {
+.copy-result:hover,
+.share-result:hover {
   border-color: var(--green);
 }
 
@@ -264,7 +266,8 @@
   min-height: 48px;
 }
 
-.copy-result {
+.copy-result,
+.share-result {
   width: 100%;
   min-height: 40px;
 }
@@ -276,6 +279,13 @@
   font-weight: 800;
   text-align: center;
   text-underline-offset: 3px;
+}
+
+.result-note {
+  margin: 14px 0 0;
+  color: #c8d0cb;
+  font-size: 0.78rem;
+  text-align: center;
 }
 
 .tool-email-button {
