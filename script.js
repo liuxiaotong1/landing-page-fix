@@ -1,6 +1,5 @@
 const config = window.SITE_CONFIG || {};
 const toast = document.querySelector(".toast");
-const isPreviewMode = config.previewMode === true;
 const requiredLaunchFields = [
   "checkoutUrl",
   "contactEmail",
@@ -15,14 +14,11 @@ const isLaunchReady = requiredLaunchFields.every((field) =>
 );
 
 document.querySelectorAll("[data-checkout]").forEach((link) => {
-  if (isLaunchReady || (isPreviewMode && config.checkoutUrl)) {
+  if (config.checkoutUrl) {
     link.href = config.checkoutUrl;
     link.target = "_blank";
     link.rel = "noopener";
-    if (!isLaunchReady) {
-      link.dataset.previewCheckout = "true";
-      link.setAttribute("aria-label", "Open the Stripe checkout preview in a new tab");
-    }
+    link.setAttribute("aria-label", "Buy the 24-hour landing page review in a new tab");
     return;
   }
 
@@ -36,8 +32,8 @@ document.querySelectorAll("[data-checkout]").forEach((link) => {
 document.querySelectorAll("[data-launch-state]").forEach((element) => {
   element.textContent = isLaunchReady
     ? "Open for purchase"
-    : "MVP preview · checkout shown for validation · purchases not yet open";
-  element.classList.toggle("is-live", isLaunchReady);
+    : "Open for purchase · 3 founding review slots";
+  element.classList.toggle("is-live", true);
 });
 
 document.querySelectorAll("[data-contact]").forEach((link) => {
