@@ -198,7 +198,7 @@ function renderResult(values, analysis) {
       <a class="button tool-email-button" href="mailto:${email}?subject=${subject}&body=${body}">Request 3 human observations</a>
       <button class="copy-result" type="button">Copy score summary</button>
       <button class="share-result" type="button">Copy shareable test link</button>
-      ${checkoutUrl ? `<a class="result-checkout-link" href="${escapeHtml(checkoutUrl)}" target="_blank" rel="noopener">Preview the €39 human review checkout ↗</a>` : ""}
+      ${checkoutUrl ? `<a class="result-checkout-link" href="${escapeHtml(checkoutUrl)}" target="_blank" rel="noopener">Buy the €39 human review ↗</a>` : ""}
     </div>
     <p class="result-note">Shareable links keep the five hero fields in the URL so a founder can reopen the same test. No text is uploaded.</p>`;
 }
